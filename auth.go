@@ -2,7 +2,7 @@ package steam_go
 
 import (
 	"errors"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"regexp"
@@ -99,7 +99,7 @@ func (id *OpenId) ValidateAndGetId() (string, error) {
 		return "", err
 	}
 	defer resp.Body.Close()
-	content, err := ioutil.ReadAll(resp.Body)
+	content, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return "", err
 	}
